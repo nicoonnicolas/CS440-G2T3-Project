@@ -8,6 +8,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	<!--Stylesheet-->
 	<style media="screen">
 		*,
@@ -167,15 +172,18 @@
 			<div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
 		</div>
 	</form>
+	<script>
+
+	</script>
 </body>
 
 </html>
 <?php
 
-include ("Database.php");
+include("Database.php");
 session_start();
 
-if (isset($_SESSION['user_full_name'])){
+if (isset($_SESSION['user_full_name'])) {
 	header("Location: Index.php");
 	exit();
 } else {
@@ -183,11 +191,12 @@ if (isset($_SESSION['user_full_name'])){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		// $password = sha1($password);
-	
+
 		$checkValidUserSQL = "SELECT * FROM user WHERE USER_USERNAME = '$username' AND USER_PASSWORD = '$password'";
-		echo $checkValidUserSQL;
+		echo "<p color='white'>" . $checkValidUserSQL . "</p>";
+
 		$checkValidUserResult = mysqli_query($link, $checkValidUserSQL);
-	
+
 		if (mysqli_num_rows($checkValidUserResult) > 0) {
 			$row = mysqli_fetch_assoc($checkValidUserResult);
 			$userFirstName = $row['USER_FIRST_NAME'];
@@ -203,7 +212,7 @@ if (isset($_SESSION['user_full_name'])){
 		// hello' OR '1'='1 for both inputs.
 
 		// SELECT * FROM user WHERE USER_USERNAME = 'hello' OR '1'='1' AND USER_PASSWORD = 'hello' OR '1'='1'
-		
+
 		/* 
 		Array ( 
 			[USER_USERNAME] => khaisoon123 
